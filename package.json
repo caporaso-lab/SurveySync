@@ -1,0 +1,9 @@
+{
+  "name": "SurveySync",
+  "version": "1.0.0",
+  "description": "Google Sheets add-on",
+  "main": "index.js",
+  "repository": "https://github.com/caporaso-lab/SurveySync",
+  "author": "Caporaso Lab",
+  "license": "BSD 3-Clause License"
+}
