@@ -7,8 +7,8 @@ from a survey database to a Google Sheets spreadsheet.
 
 ### Prereqs
 
--
--
--
+To be determined
 
 ### Developer Quickstart
+
+Coming soon
