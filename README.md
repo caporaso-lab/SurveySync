@@ -12,3 +12,15 @@ To be determined
 ### Developer Quickstart
 
 Coming soon
+
+### Dependencies
+
+Yarn
+
+#### Installation
+
+`yarn install`
+
+#### Build Instruction
+
+`npm run build`
