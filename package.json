@@ -6,6 +6,7 @@
   "repository": "https://github.com/caporaso-lab/SurveySync",
   "author": "Caporaso Lab",
   "license": "BSD 3-Clause License",
+  "private": true,
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
