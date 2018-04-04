@@ -87,6 +87,8 @@ typings/
 # dotenv environment variables file
 .env
 
+# webpack output
+dist
 
 
 # End of https://www.gitignore.io/api/node,macos
