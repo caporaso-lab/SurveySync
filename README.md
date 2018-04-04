@@ -1,5 +1,7 @@
 # Survey Sync
 
+[![Build Status](https://travis-ci.org/caporaso-lab/SurveySync.svg?branch=master)](https://travis-ci.org/caporaso-lab/SurveySync)
+
 ## Google Sheets add-on
 
 This is a Google Sheets add-on that will facilitate the synchronization of data
