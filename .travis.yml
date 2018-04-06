@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+    - "node"
+cache: yarn
+script:
+    # TODO: add entrypoint for linting
+    # - npm run lint
+    - npm run build
+    # TODO: add entrypoint for tests
+    # - npm test
