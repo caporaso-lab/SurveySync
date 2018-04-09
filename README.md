@@ -2,27 +2,24 @@
 
 [![Build Status](https://travis-ci.org/caporaso-lab/SurveySync.svg?branch=master)](https://travis-ci.org/caporaso-lab/SurveySync)
 
-## Google Sheets add-on
-
 This is a Google Sheets add-on that will facilitate the synchronization of data
 from a survey database to a Google Sheets spreadsheet.
 
-### Prereqs
+## Dependencies
 
-To be determined
+- [yarn](https://yarnpkg.com/)
+- A Google Account (for deploying the built add-on)
 
-### Developer Quickstart
+## Developer Quickstart
 
-Coming soon
+### Installation
 
-### Dependencies
+```bash
+yarn install
+```
 
-Yarn
+### Build Instructions
 
-#### Installation
-
-`yarn install`
-
-#### Build Instruction
-
-`npm run build`
+```bash
+npm run build
+```
