@@ -1,6 +1,6 @@
-import helloWorld from './utils.js';
+import helloWorld from './utils';
 
 
-console.log("Hello World");
+console.log('Hello World');
 
 helloWorld();
