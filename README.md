@@ -23,3 +23,12 @@ yarn install
 ```bash
 npm run build
 ```
+
+### Deploy Instructions
+
+```bash
+# You can also install clasp globally and login that way, too - the token is
+# shared at the user level.
+./node_modules/.bin/clasp login
+cd dist && ./..node_modules/.bin/clasp push && cd ..
+``

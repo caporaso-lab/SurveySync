@@ -87,8 +87,12 @@ typings/
 # dotenv environment variables file
 .env
 
-# webpack output
-dist
+# ignore the webpack output
+!dist
+dist/*
+# except for these clasp files
+!dist/appsscript.json
+!dist/.clasp.json
 
 
 # End of https://www.gitignore.io/api/node,macos

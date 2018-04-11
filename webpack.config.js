@@ -1,11 +1,16 @@
 const path = require('path');
+const GasPlugin = require('gas-webpack-plugin');
 
 module.exports = {
+  mode: 'none',
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'addon.bundle.js'
+    filename: 'addon.bundle.js',
   },
+  plugins: [
+    new GasPlugin(),
+  ],
   module: {
     rules: [
       {
@@ -15,14 +20,17 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: ['babel-preset-env']
+              presets: [
+                'babel-preset-env',
+                'google-apps-script',
+              ]
             }
           },
           {
-            loader: 'eslint-loader'
-          }
-        ]
-      }
-    ]
-  }
+            loader: 'eslint-loader',
+          },
+        ],
+      },
+    ],
+  },
 };
