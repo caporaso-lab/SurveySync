@@ -1,2 +1,3 @@
-const helloWorld = () => console.log('Hello World 2');
-export default { helloWorld };
+export default function helloWorld() {
+  Logger.log('hello world'); // eslint-disable-line
+}

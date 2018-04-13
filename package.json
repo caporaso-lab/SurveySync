@@ -18,10 +18,13 @@
     "lint": "eslint src"
   },
   "devDependencies": {
+    "@google/clasp": "^1.1.5",
+    "babel-preset-google-apps-script": "^0.0.3",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-loader": "^2.0.0",
     "eslint-plugin-import": "^2.10.0",
+    "gas-webpack-plugin": "^0.2.1",
     "webpack-cli": "^2.0.13"
   }
 }
