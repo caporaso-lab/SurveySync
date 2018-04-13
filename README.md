@@ -30,5 +30,5 @@ npm run build
 # You can also install clasp globally and login that way, too - the token is
 # shared at the user level.
 ./node_modules/.bin/clasp login
-cd dist && ./..node_modules/.bin/clasp push && cd ..
-``
+cd dist && ./../node_modules/.bin/clasp push && cd ..
+```
