@@ -1,17 +1,19 @@
-.PHONY: help
-	help:
-				@echo "Please use build to install the dependencies."
-				@echo "Please use lint..."
-				@echo "Please use deploy to use the add-on"
 
+help:
+	@echo "make build  -------->> to compile the code."
+	@echo "make lint   -------->> to check code quality."
+	@echo "make deploy -------->> to push the code to appscript."
+	@echo "make dev    -------->> to install yarn package manager."
 
+lint:
+	npm run lint
 
+build:
+	npm run build
 
+deploy:
+	./node_modules/.bin/clasp login
+	cd dist && ./../node_modules/.bin/clasp push && cd ..
 
-	build:
-
-
-	lint:
-
-
-	deploy:
+dev:
+	install yarn
