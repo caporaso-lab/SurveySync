@@ -7,17 +7,15 @@
   "author": "Caporaso Lab",
   "license": "BSD 3-Clause License",
   "private": true,
-  "dependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.6.1",
-    "webpack": "^4.5.0"
-  },
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "lint": "eslint src"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "webpack": "^4.5.0",
     "@google/clasp": "^1.1.5",
     "babel-preset-google-apps-script": "^0.0.3",
     "eslint": "^4.19.1",
