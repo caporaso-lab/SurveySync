@@ -1,4 +1,8 @@
-// eslint-disable-next-line no-unused-vars
-export default function onOpen(e) {
-  SpreadsheetApp.getUi().createAddonMenu().addItem('First Item','firstItem').addItem('Second Item','secondItem').addToUi(); // eslint-disable-line
+export default function onOpen() {
+  SpreadsheetApp.getUi().createAddonMenu().addItem('Populate Sheet','populateSheet').addItem('Second Item','secondItem').addToUi(); // eslint-disable-line
+}
+
+export function populateSheet() {
+  var rangeList = SpreadsheetApp.getActiveSpreadsheet().getActiveRangeList(); // eslint-disable-line
+  rangeList.setValue('Survey Sync'); // eslint-disable-line
 }
