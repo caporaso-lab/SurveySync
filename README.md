@@ -15,20 +15,28 @@ from a survey database to a Google Sheets spreadsheet.
 ### Installation
 
 ```bash
-yarn install
+make dev
 ```
 
 ### Build Instructions
 
 ```bash
-npm run build
+make build
 ```
 
 ### Deploy Instructions
 
 ```bash
-# You can also install clasp globally and login that way, too - the token is
-# shared at the user level.
-./node_modules/.bin/clasp login
-cd dist && ./../node_modules/.bin/clasp push && cd ..
+# Log in to your Google Account using Clasp.
+make login
+```
+
+```bash
+# Log out of your Google Account.
+make logout
+```
+
+```bash
+# Push your code to Google App Script Project.
+make deploy
 ```
