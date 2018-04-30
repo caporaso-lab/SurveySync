@@ -2,6 +2,7 @@
     "extends": "airbnb-base",
 		"globals": {
       "SpreadsheetApp": false,
-      "UrlFetchApp": false
+      "UrlFetchApp": false,
+      "Logger": false
     }
 }
