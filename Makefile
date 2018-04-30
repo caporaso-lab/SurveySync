@@ -3,8 +3,9 @@ help:
 	@echo "make build  -------->> to compile the code."
 	@echo "make lint   -------->> to check code quality."
 	@echo "make login  -------->> to log in to your google account."
+	@echo "make logout  -------->> to log out of your google account."
 	@echo "make deploy -------->> to push the code to appscript."
-	@echo "make dev    -------->> to install yarn package manager."
+	@echo "make dev    -------->> to to install dependencies using yarn."
 
 .PHONY: lint
 lint:
@@ -17,6 +18,10 @@ build:
 .PHONY: login
 login:
 	./node_modules/.bin/clasp login
+
+.PHONY: logout
+logout:
+	./node_modules/.bin/clasp logout
 
 .PHONY: deploy
 deploy:
