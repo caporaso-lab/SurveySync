@@ -1,0 +1,28 @@
+<html>
+
+<body>
+  <div class='wrapper'>
+    <h3>Please enter your survey configuration to initialize survey sync</h3>
+    <form id='config-form'>
+      <div class='form-uname'>
+        <p>Enter the API token</p>
+        <p><input id="tokenAPI" type="text" placeholder="API Token">
+          <p>
+            <p>Enter the survey ID</p>
+            <p><input id="surveyID" type="text" placeholder="Survey ID"></p>
+      </div>
+      <div class='form-sub'>
+        <p><button onclick="submitForm()">Initialize Survey</button></p>
+      </div>
+    </form>
+    <script>
+      let config = {};
+
+      function submitForm() {
+        config.tokenAPI = document.getElementById('tokenAPI').value;
+        config.surveyID = document.getElementById('surveyID').value;
+        google.script.run.submitData();
+        google.script.host.close();
+      }
+    </script>
+</body>
