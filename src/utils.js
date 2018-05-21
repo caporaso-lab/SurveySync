@@ -4,6 +4,7 @@ export function onOpen() {
     .addItem('Initialize Survey', 'initializeSurvey')
     .addToUi();
 }
+
 export function getData() {
   const rangeList = SpreadsheetApp.getActiveSpreadsheet()
     .getActiveRangeList();
@@ -25,7 +26,28 @@ export function initializeSurvey() {
     .showModalDialog(renderedHtml, 'Survey Configuration');
 }
 
+export function setupDatabase() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const DB = 'DB';
+
+  let dbSheet = ss.getSheetByName(DB);
+  if (dbSheet === null) {
+    dbSheet = ss.insertSheet(DB);
+  }
+
+  dbSheet.hideSheet();
+
+  const protection = dbSheet.protect();
+  protection.removeEditors(protection.getEditors());
+  protection.setWarningOnly(true);
+}
+
 export function updateConfig(config) {
   const documentProperties = PropertiesService.getDocumentProperties();
   documentProperties.setProperties(config);
+}
+
+export function bootstrapApp(config) {
+  updateConfig(config);
+  setupDatabase();
 }
