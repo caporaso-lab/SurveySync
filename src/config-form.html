@@ -15,7 +15,7 @@
     function submitForm(e) {
       e.preventDefault();
       var config = document.getElementById('config-form');
-      google.script.run.updateConfig(config);
+      google.script.run.bootstrapApp(config);
       google.script.host.close();
     }
   </script>
