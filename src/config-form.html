@@ -1,28 +1,25 @@
 <html>
-
 <body>
-  <div class='wrapper'>
-    <h3>Please enter your survey configuration to initialize survey sync</h3>
-    <form id='config-form'>
-      <div class='form-uname'>
-        <p>Enter the API token</p>
-        <p><input id="tokenAPI" type="text" placeholder="API Token">
-          <p>
-            <p>Enter the survey ID</p>
-            <p><input id="surveyID" type="text" placeholder="Survey ID"></p>
-      </div>
-      <div class='form-sub'>
-        <p><button onclick="submitForm()">Initialize Survey</button></p>
-      </div>
+  <div>
+    <form>
+      <label for="token-api">API token</label>
+      <input id="token-api" type="text" value="<?= tokenAPI ?>" placeholder="API Token">
+      <br>
+      <label for="survey-id">Survey ID</label>
+      <input id="survey-id" type="text" value="<?= surveyID ?>" placeholder="Survey ID">
+      <br>
+      <input type="submit" value="Initialize Survey" onclick="submitForm(event)">
     </form>
-    <script>
-      let config = {};
-
-      function submitForm() {
-        config.tokenAPI = document.getElementById('tokenAPI').value;
-        config.surveyID = document.getElementById('surveyID').value;
-        google.script.run.submitData();
-        google.script.host.close();
-      }
-    </script>
+  </div>
+  <script>
+    var config = {};
+    function submitForm(e) {
+      e.preventDefault();
+      config.tokenAPI = document.getElementById('token-api').value;
+      config.surveyID = document.getElementById('survey-id').value;
+      google.script.run.updateConfig(config);
+      google.script.host.close();
+    }
+  </script>
 </body>
+</html>
