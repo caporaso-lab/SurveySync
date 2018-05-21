@@ -1,22 +1,20 @@
 <html>
 <body>
   <div>
-    <form>
+    <form id="config-form">
       <label for="token-api">API token</label>
-      <input id="token-api" type="text" value="<?= tokenAPI ?>" placeholder="API Token">
+      <input id="token-api" name="tokenAPI" type="text" value="<?= tokenAPI ?>" placeholder="API Token">
       <br>
       <label for="survey-id">Survey ID</label>
-      <input id="survey-id" type="text" value="<?= surveyID ?>" placeholder="Survey ID">
+      <input id="survey-id" name="surveyID" type="text" value="<?= surveyID ?>" placeholder="Survey ID">
       <br>
       <input type="submit" value="Initialize Survey" onclick="submitForm(event)">
     </form>
   </div>
   <script>
-    var config = {};
     function submitForm(e) {
       e.preventDefault();
-      config.tokenAPI = document.getElementById('token-api').value;
-      config.surveyID = document.getElementById('survey-id').value;
+      var config = document.getElementById('config-form');
       google.script.run.updateConfig(config);
       google.script.host.close();
     }

@@ -5,8 +5,6 @@
       "UrlFetchApp": false,
       "Logger": false,
       "PropertiesService": false,
-      "HtmlService": false,
-      "ScriptApp": false,
-      "google": false
+      "HtmlService": false
     }
 }
