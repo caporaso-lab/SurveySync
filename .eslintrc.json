@@ -3,6 +3,8 @@
 		"globals": {
       "SpreadsheetApp": false,
       "UrlFetchApp": false,
-      "Logger": false
+      "Logger": false,
+      "PropertiesService": false,
+      "HtmlService": false
     }
 }

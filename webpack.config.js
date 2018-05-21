@@ -1,5 +1,6 @@
 const path = require('path');
 const GasPlugin = require('gas-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'none',
@@ -10,6 +11,12 @@ module.exports = {
   },
   plugins: [
     new GasPlugin(),
+    new CopyWebpackPlugin([
+      {
+        from: './src/config-form.html',
+        to: 'config-form.html'
+      }
+    ])
   ],
   module: {
     rules: [
