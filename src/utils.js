@@ -7,15 +7,13 @@ export function onOpen() {
 
 export function getData() {
   const DB = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('DB');
-  const response = UrlFetchApp.fetch('http://ghost.mggen.nau.edu:8081/basic/csv/lite');
-  const text = response.getContentText();
-  const result = JSON.parse(text);
-  Logger.log(result);
-  for (let row = 1; row < 4; row += 1) {
-    for (let col = 1; col < 4; col += 1) {
-      DB.getRange(row, col).setValue('Hello World!');
-    }
-  }
+  const fetchResponse = UrlFetchApp.fetch('http://ghost.mggen.nau.edu:8081/basic/csv/lite');
+  const text = fetchResponse.getContentText();
+  const valuesArr = text.split('\n').map(e => e.split(','));
+  const numofRows = valuesArr.length;
+  const numofCols = valuesArr[0].length;
+  const range = DB.getRange(1, 1, numofRows, numofCols);
+  range.setValues(valuesArr);
 }
 
 export function updateConfig(config) {

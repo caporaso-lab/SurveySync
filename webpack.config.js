@@ -30,10 +30,10 @@ module.exports = {
               presets: [
                 'babel-preset-env',
                 'google-apps-script',
-              ]//,
-              //plugins: [
-                //'transform-object-assign',
-              //],
+              ],
+              plugins: [
+                'transform-object-assign',
+              ],
             }
           },
           {
