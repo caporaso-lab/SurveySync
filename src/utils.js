@@ -16,11 +16,25 @@ export function getData() {
   }
 }
 
+export function updateConfig(config) {
+  const documentProperties = PropertiesService.getDocumentProperties();
+  documentProperties.deleteAllProperties();
+  documentProperties.setProperties(config);
+}
+
 export function initializeSurvey() {
+  const defaultConfig = {
+    tokenAPI: '',
+    surveyID: '',
+  };
+
   const html = HtmlService.createTemplateFromFile('config-form');
   const documentProperties = PropertiesService.getDocumentProperties();
-  html.tokenAPI = documentProperties.getProperty('tokenAPI');
-  html.surveyID = documentProperties.getProperty('surveyID');
+  const config = documentProperties.getProperties();
+  if (Object.keys(config) !== Object.keys(defaultConfig)) {
+    updateConfig(defaultConfig);
+  }
+  Object.assign(html, config);
   const renderedHtml = html.evaluate().setWidth(400).setHeight(300);
   SpreadsheetApp.getUi()
     .showModalDialog(renderedHtml, 'Survey Configuration');
@@ -40,11 +54,6 @@ export function setupDatabase() {
   const protection = dbSheet.protect();
   protection.removeEditors(protection.getEditors());
   protection.setWarningOnly(true);
-}
-
-export function updateConfig(config) {
-  const documentProperties = PropertiesService.getDocumentProperties();
-  documentProperties.setProperties(config);
 }
 
 export function bootstrapApp(config) {
