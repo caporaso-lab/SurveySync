@@ -6,13 +6,15 @@ export function onOpen() {
 }
 
 export function getData() {
-  const rangeList = SpreadsheetApp.getActiveSpreadsheet()
-    .getActiveRangeList();
-  const response = UrlFetchApp.fetch('http://ghost.mggen.nau.edu:8081/basic/get');
+  const DB = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('DB');
+  const response = UrlFetchApp.fetch('http://ghost.mggen.nau.edu:8081/basic/csv/lite');
   const text = response.getContentText();
-  const obj = JSON.parse(text);
-  if (obj.msg === 'hello world') {
-    rangeList.setValue(obj.msg);
+  const result = JSON.parse(text);
+  Logger.log(result);
+  for (let row = 1; row < 4; row += 1) {
+    for (let col = 1; col < 4; col += 1) {
+      DB.getRange(row, col).setValue('Hello World!');
+    }
   }
 }
 
