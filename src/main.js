@@ -1,10 +1,8 @@
-import * as utils from './utils';
-import * as ui from './ui';
-import * as config from './config';
-import * as data from './data';
-// In order for functions to be exposed to the Google Apps Script
-// Engine, we need to register them on the `global` context.
-// See https://github.com/Automattic/google-docs-add-on
-// for more details.
-Object.assign(global, utils, ui, config, data);
-// global.onOpen = utils.onOpen;
+// This file is the entry point for webpack. Import all modules here to ensure
+// all side effects are run. Individual modules perform their own global context
+// registration.
+
+import './utils';
+import './ui';
+import './config';
+import './data';

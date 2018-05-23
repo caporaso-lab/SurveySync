@@ -28,3 +28,14 @@ export function getConfigWithDefaultFallBack() {
   const config = getConfig();
   return validateConfig(config) ? config : resetConfig();
 }
+
+// In order for functions to be exposed to the Google Apps Script
+// Engine, we need to register them on the `global` context.
+// See https://github.com/fossamagna/gas-webpack-plugin
+// for more details.
+
+global.updateConfig = updateConfig;
+global.getConfig = getConfig;
+global.resetConfig = resetConfig;
+global.validateConfig = validateConfig;
+global.getConfigWithDefaultFallBack = getConfigWithDefaultFallBack;

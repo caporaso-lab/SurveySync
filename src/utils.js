@@ -30,5 +30,16 @@ export function getDB() {
 }
 
 export function verifyDB() {
-  return getDB() === null;
+  return getDB() !== null;
 }
+
+// In order for functions to be exposed to the Google Apps Script
+// Engine, we need to register them on the `global` context.
+// See https://github.com/fossamagna/gas-webpack-plugin
+// for more details.
+
+global.onOpen = onOpen;
+global.setupDatabase = setupDatabase;
+global.bootstrapApp = bootstrapApp;
+global.getDB = getDB;
+global.verifyDB = verifyDB;

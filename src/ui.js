@@ -14,6 +14,7 @@ export function showSurveyConfiguration() {
 
 export function triggerDataUpdate() {
   // TODO error handling
+  Logger.log(verifyDB());
   if (!verifyDB()) {
     return;
   }
@@ -26,3 +27,12 @@ export function buildMenu() {
     .addItem('Initialize Survey', 'showSurveyConfiguration')
     .addToUi();
 }
+
+// In order for functions to be exposed to the Google Apps Script
+// Engine, we need to register them on the `global` context.
+// See https://github.com/fossamagna/gas-webpack-plugin
+// for more details.
+
+global.showSurveyConfiguration = showSurveyConfiguration;
+global.triggerDataUpdate = triggerDataUpdate;
+global.buildMenu = buildMenu;
