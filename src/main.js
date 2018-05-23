@@ -1,19 +1,8 @@
-import {
-  onOpen,
-  getData,
-  initializeSurvey,
-  bootstrapApp,
-  setupDatabase,
-  updateConfig,
-} from './utils';
+// This file is the entry point for webpack. Import all modules here to ensure
+// all side effects are run. Individual modules perform their own global context
+// registration.
 
-// In order for functions to be exposed to the Google Apps Script
-// Engine, we need to register them on the `global` context.
-// See https://github.com/Automattic/google-docs-add-on
-// for more details.
-global.onOpen = onOpen;
-global.getData = getData;
-global.initializeSurvey = initializeSurvey;
-global.bootstrapApp = bootstrapApp;
-global.setupDatabase = setupDatabase;
-global.updateConfig = updateConfig;
+import './util';
+import './ui';
+import './config';
+import './data';
