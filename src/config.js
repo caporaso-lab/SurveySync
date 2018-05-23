@@ -10,17 +10,17 @@ export function updateConfig(config) {
   return config;
 }
 
-export function getConfig() {
+function getConfig() {
   const documentProperties = PropertiesService.getDocumentProperties();
   const config = documentProperties.getProperties();
   return config;
 }
 
-export function resetConfig() {
+function resetConfig() {
   return updateConfig(defaultConfig);
 }
 
-export function validateConfig(config) {
+function validateConfig(config) {
   return Object.keys(config) !== Object.keys(defaultConfig);
 }
 

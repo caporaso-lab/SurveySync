@@ -2,7 +2,7 @@ import { getConfigWithDefaultFallBack } from './config';
 import { verifyDB } from './utils';
 import { fetchData, parseData, writeDataToDB } from './data';
 
-export function showSurveyConfiguration() {
+function showSurveyConfiguration() {
   const html = HtmlService.createTemplateFromFile('config-form');
   const config = getConfigWithDefaultFallBack();
   // html mutated in place
@@ -12,7 +12,7 @@ export function showSurveyConfiguration() {
     .showModalDialog(renderedHtml, 'Survey Configuration');
 }
 
-export function triggerDataUpdate() {
+function triggerDataUpdate() {
   // TODO error handling
   Logger.log(verifyDB());
   if (!verifyDB()) {
@@ -21,12 +21,14 @@ export function triggerDataUpdate() {
   writeDataToDB(parseData(fetchData()));
 }
 
-export function buildMenu() {
+function buildMenu() {
   SpreadsheetApp.getUi().createAddonMenu()
     .addItem('Get Data', 'triggerDataUpdate')
     .addItem('Initialize Survey', 'showSurveyConfiguration')
     .addToUi();
 }
+
+export default buildMenu;
 
 // In order for functions to be exposed to the Google Apps Script
 // Engine, we need to register them on the `global` context.

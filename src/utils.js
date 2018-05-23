@@ -1,17 +1,17 @@
 import { updateConfig } from './config';
-import { buildMenu } from './ui';
+import buildMenu from './ui';
 
 const DB = 'DB';
 
-export function onOpen() {
+function onOpen() {
   buildMenu();
 }
 
-export function insertDB() {
+function insertDB() {
   return SpreadsheetApp.getActiveSpreadsheet().insertSheet(DB);
 }
 
-export function protectDB(database) {
+function protectDB(database) {
   database.hideSheet();
   const protection = database.protect();
   protection.removeEditors(protection.getEditors());
@@ -19,24 +19,26 @@ export function protectDB(database) {
   return { database, protection };
 }
 
-export function getDB() {
+function getDB() {
   return SpreadsheetApp.getActiveSpreadsheet().getSheetByName('DB');
 }
 
-export function verifyDB() {
+function verifyDB() {
   return getDB() !== null;
 }
 
-export function setupDatabase() {
+function setupDatabase() {
   if (!verifyDB()) {
     protectDB(insertDB());
   }
 }
 
-export function bootstrapApp(config) {
+function bootstrapApp(config) {
   updateConfig(config);
   setupDatabase();
 }
+
+export { getDB, verifyDB };
 
 // In order for functions to be exposed to the Google Apps Script
 // Engine, we need to register them on the `global` context.
