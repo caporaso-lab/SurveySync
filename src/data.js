@@ -1,4 +1,4 @@
-import { getDB } from './utils';
+import { getDB } from './util';
 
 function writeDataToDB(table) {
   const DB = getDB();

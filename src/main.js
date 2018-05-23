@@ -2,7 +2,7 @@
 // all side effects are run. Individual modules perform their own global context
 // registration.
 
-import './utils';
+import './util';
 import './ui';
 import './config';
 import './data';

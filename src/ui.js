@@ -1,5 +1,5 @@
 import { getConfigWithDefaultFallBack } from './config';
-import { verifyDB } from './utils';
+import { verifyDB } from './util';
 import { fetchData, parseData, writeDataToDB } from './data';
 
 function showSurveyConfiguration() {
