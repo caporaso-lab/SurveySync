@@ -7,9 +7,7 @@ function writeDataToDB(table) {
   range.setValues(table);
 }
 
-function parseData(response) {
-  return response.split('\n').map(row => row.split(','));
-}
+const parseData = response => response.split('\n').map(row => row.split(','));
 
 function fetchData() {
   // TODO get config

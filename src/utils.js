@@ -3,13 +3,13 @@ import buildMenu from './ui';
 
 const DB = 'DB';
 
-function onOpen() {
-  buildMenu();
-}
+const onOpen = () => buildMenu();
 
-function insertDB() {
-  return SpreadsheetApp.getActiveSpreadsheet().insertSheet(DB);
-}
+const insertDB = () => SpreadsheetApp.getActiveSpreadsheet().insertSheet(DB);
+
+const getDB = () => SpreadsheetApp.getActiveSpreadsheet().getSheetByName(DB);
+
+const verifyDB = () => getDB() !== null;
 
 function protectDB(database) {
   database.hideSheet();
@@ -19,24 +19,9 @@ function protectDB(database) {
   return { database, protection };
 }
 
-function getDB() {
-  return SpreadsheetApp.getActiveSpreadsheet().getSheetByName('DB');
-}
+const setupDatabase = () => { if (!verifyDB()) { protectDB(insertDB()); } };
 
-function verifyDB() {
-  return getDB() !== null;
-}
-
-function setupDatabase() {
-  if (!verifyDB()) {
-    protectDB(insertDB());
-  }
-}
-
-function bootstrapApp(config) {
-  updateConfig(config);
-  setupDatabase();
-}
+const bootstrapApp = (config) => { updateConfig(config); setupDatabase(); };
 
 export { getDB, verifyDB };
 
