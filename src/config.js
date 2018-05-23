@@ -3,31 +3,25 @@ const defaultConfig = {
   surveyID: '',
 };
 
-export function updateConfig(config) {
+const getConfig = () => PropertiesService.getDocumentProperties().getProperties();
+
+const validateConfig = config => Object.keys(config) !== Object.keys(defaultConfig);
+
+function updateConfig(config) {
   const documentProperties = PropertiesService.getDocumentProperties();
   documentProperties.deleteAllProperties();
   documentProperties.setProperties(config);
   return config;
 }
 
-function getConfig() {
-  const documentProperties = PropertiesService.getDocumentProperties();
-  const config = documentProperties.getProperties();
-  return config;
-}
+const resetConfig = () => updateConfig(defaultConfig);
 
-function resetConfig() {
-  return updateConfig(defaultConfig);
-}
-
-function validateConfig(config) {
-  return Object.keys(config) !== Object.keys(defaultConfig);
-}
-
-export function getConfigWithDefaultFallBack() {
+function getConfigWithDefaultFallBack() {
   const config = getConfig();
   return validateConfig(config) ? config : resetConfig();
 }
+
+export { updateConfig, getConfigWithDefaultFallBack };
 
 // In order for functions to be exposed to the Google Apps Script
 // Engine, we need to register them on the `global` context.
