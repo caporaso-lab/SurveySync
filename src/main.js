@@ -1,10 +1,11 @@
 import {
   onOpen,
-  getData,
+  setupDatabase,
+  parseData,
+  fetchData,
+  updateConfig,
   initializeSurvey,
   bootstrapApp,
-  setupDatabase,
-  updateConfig,
 } from './utils';
 
 // In order for functions to be exposed to the Google Apps Script
@@ -12,8 +13,9 @@ import {
 // See https://github.com/Automattic/google-docs-add-on
 // for more details.
 global.onOpen = onOpen;
-global.getData = getData;
+global.setupDatabase = setupDatabase;
+global.parseData = parseData;
+global.fetchData = fetchData;
+global.updateConfig = updateConfig;
 global.initializeSurvey = initializeSurvey;
 global.bootstrapApp = bootstrapApp;
-global.setupDatabase = setupDatabase;
-global.updateConfig = updateConfig;
