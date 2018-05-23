@@ -1,6 +1,7 @@
 import {
   onOpen,
   setupDatabase,
+  postData,
   parseData,
   fetchData,
   updateConfig,
@@ -14,6 +15,7 @@ import {
 // for more details.
 global.onOpen = onOpen;
 global.setupDatabase = setupDatabase;
+global.postData = postData;
 global.parseData = parseData;
 global.fetchData = fetchData;
 global.updateConfig = updateConfig;
