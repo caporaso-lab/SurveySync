@@ -33,6 +33,7 @@ module.exports = {
               ],
               plugins: [
                 'transform-object-assign',
+                'transform-es2017-object-entries'
               ],
             }
           },
