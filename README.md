@@ -7,6 +7,7 @@ from a survey database to a Google Sheets spreadsheet.
 
 ## Dependencies
 
+- Node 8
 - [yarn](https://yarnpkg.com/)
 - A Google Account (for deploying the built add-on)
 
