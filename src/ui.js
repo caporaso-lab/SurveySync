@@ -13,10 +13,8 @@ function showSurveyConfiguration() {
 }
 
 function triggerDataUpdate() {
-  // TODO error handling
-  Logger.log(verifyDB());
   if (!verifyDB()) {
-    return;
+    throw new Error('Please run \'Initialize Survey\' prior to getting data.');
   }
   writeDataToDB(parseData(fetchData()));
 }
