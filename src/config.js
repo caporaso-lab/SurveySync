@@ -1,11 +1,21 @@
 const defaultConfig = {
   tokenAPI: '',
   surveyID: '',
+  surveyUrl: 'http://ghost.mggen.nau.edu:8081/basic/csv/lite',
 };
 
 const getConfig = () => PropertiesService.getDocumentProperties().getProperties();
 
-const validateConfig = config => Object.keys(config) !== Object.keys(defaultConfig);
+const validateConfigSchema = (config) => {
+  const defaultConfigKeys = Object.keys(defaultConfig);
+  const configKeys = Object.keys(config);
+  for (let i = 0; i < defaultConfigKeys.length; i += 1) {
+    if (!configKeys.includes(defaultConfigKeys[i])) {
+      return false;
+    }
+  }
+  return true;
+};
 
 function updateConfig(config) {
   const documentProperties = PropertiesService.getDocumentProperties();
@@ -18,10 +28,11 @@ const resetConfig = () => updateConfig(defaultConfig);
 
 function getConfigWithDefaultFallBack() {
   const config = getConfig();
-  return validateConfig(config) ? config : resetConfig();
+  const test = validateConfigSchema(config) ? config : resetConfig();
+  return test;
 }
 
-export { updateConfig, getConfigWithDefaultFallBack };
+export { updateConfig, getConfigWithDefaultFallBack, getConfig };
 
 // In order for functions to be exposed to the Google Apps Script Engine, we need to register them
 // on the `global` context.  See https://github.com/fossamagna/gas-webpack-plugin for more details.
@@ -29,5 +40,5 @@ export { updateConfig, getConfigWithDefaultFallBack };
 global.updateConfig = updateConfig;
 global.getConfig = getConfig;
 global.resetConfig = resetConfig;
-global.validateConfig = validateConfig;
+global.validateConfigSchema = validateConfigSchema;
 global.getConfigWithDefaultFallBack = getConfigWithDefaultFallBack;

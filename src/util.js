@@ -18,10 +18,13 @@ function protectDB(database) {
   protection.setWarningOnly(true);
   return { database, protection };
 }
-
+  
 const setupDatabase = () => { if (!verifyDB()) { protectDB(insertDB()); } };
 
-const bootstrapApp = (config) => { updateConfig(config); setupDatabase(); };
+const bootstrapApp = (config) => {
+  updateConfig(config);
+  setupDatabase();
+};
 
 export { getDB, verifyDB };
 
