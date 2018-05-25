@@ -1,6 +1,6 @@
-import { getConfigWithDefaultFallBack } from './config';
+import { getConfigWithDefaultFallBack, getConfig } from './config';
 import { verifyDB } from './util';
-import { fetchData, parseData, writeDataToDB } from './data';
+import { fetchData, parseData, writeDataToDB, unzipResponse, csvBlobToString } from './data';
 
 function showSurveyConfiguration() {
   const html = HtmlService.createTemplateFromFile('config-form');
@@ -16,7 +16,14 @@ function triggerDataUpdate() {
   if (!verifyDB()) {
     throw new Error('Please run \'Initialize Survey\' prior to getting data.');
   }
-  writeDataToDB(parseData(fetchData()));
+  const config = getConfig();
+  const resp = fetchData(config.surveyUrl);
+  const blobs = unzipResponse(resp);
+  const csvStrings = blobs.map(csvBlobToString);
+  const tables = csvStrings.map(parseData);
+  // TODO Fix writeDataToDB
+  writeDataToDB(tables[1]);
+  Logger.log(tables);
 }
 
 function buildMenu() {

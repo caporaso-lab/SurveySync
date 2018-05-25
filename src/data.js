@@ -1,5 +1,5 @@
 import { getDB } from './util';
-import { getConfig } from './config';
+// import { getConfig } from './config';
 
 function writeDataToDB(table) {
   const DB = getDB();
@@ -10,14 +10,13 @@ function writeDataToDB(table) {
 
 const parseData = response => response.split('\n').map(row => row.split(','));
 
-function fetchData() {
-  const config = getConfig();
-  return UrlFetchApp
-    .fetch(config.surveyUrl)
-    .getContentText();
-}
+const fetchData = url => UrlFetchApp.fetch(url);
 
-export { writeDataToDB, parseData, fetchData };
+const unzipResponse = resp => Utilities.unzip(resp.getBlob());
+
+const csvBlobToString = blob => blob.getDataAsString();
+
+export { writeDataToDB, parseData, fetchData, unzipResponse, csvBlobToString };
 
 // In order for functions to be exposed to the Google Apps Script Engine, we need to register them
 // on the `global` context.  See https://github.com/fossamagna/gas-webpack-plugin for more details.
@@ -25,3 +24,5 @@ export { writeDataToDB, parseData, fetchData };
 global.writeDataToDB = writeDataToDB;
 global.parseData = parseData;
 global.fetchData = fetchData;
+global.unzipResponse = unzipResponse;
+global.csvBlobToString = csvBlobToString;

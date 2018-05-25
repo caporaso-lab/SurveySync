@@ -1,7 +1,7 @@
 const defaultConfig = {
   tokenAPI: '',
   surveyID: '',
-  surveyUrl: 'http://ghost.mggen.nau.edu:8081/basic/csv/lite',
+  surveyUrl: 'http://ghost.mggen.nau.edu:8081/zip/simple.zip',
 };
 
 const getConfig = () => PropertiesService.getDocumentProperties().getProperties();
