@@ -23,6 +23,7 @@ function buildMenu() {
   SpreadsheetApp.getUi().createAddonMenu()
     .addItem('Get Data', 'triggerDataUpdate')
     .addItem('Initialize Survey', 'showSurveyConfiguration')
+    .addItem('Test Clearing Existing Configuration', 'testingClearExistingConfig')
     .addToUi();
 }
 

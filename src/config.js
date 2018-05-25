@@ -9,12 +9,7 @@ const getConfig = () => PropertiesService.getDocumentProperties().getProperties(
 const validateConfigSchema = (config) => {
   const defaultConfigKeys = Object.keys(defaultConfig);
   const configKeys = Object.keys(config);
-  for (let i = 0; i < defaultConfigKeys.length; i += 1) {
-    if (!configKeys.includes(defaultConfigKeys[i])) {
-      return false;
-    }
-  }
-  return true;
+  return defaultConfigKeys.map(x => configKeys.includes(x)).every(x => x);
 };
 
 function updateConfig(config) {
@@ -24,11 +19,11 @@ function updateConfig(config) {
   return config;
 }
 
-const resetConfig = () => updateConfig(defaultConfig);
+const resetConfigWithDefault = () => updateConfig(defaultConfig);
 
 function getConfigWithDefaultFallBack() {
   const config = getConfig();
-  const test = validateConfigSchema(config) ? config : resetConfig();
+  const test = validateConfigSchema(config) ? config : resetConfigWithDefault();
   return test;
 }
 
@@ -39,6 +34,6 @@ export { updateConfig, getConfigWithDefaultFallBack, getConfig };
 
 global.updateConfig = updateConfig;
 global.getConfig = getConfig;
-global.resetConfig = resetConfig;
+global.resetConfigWithDefault = resetConfigWithDefault;
 global.validateConfigSchema = validateConfigSchema;
 global.getConfigWithDefaultFallBack = getConfigWithDefaultFallBack;

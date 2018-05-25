@@ -11,7 +11,6 @@ function writeDataToDB(table) {
 const parseData = response => response.split('\n').map(row => row.split(','));
 
 function fetchData() {
-  // TODO get config
   const config = getConfig();
   return UrlFetchApp
     .fetch(config.surveyUrl)
