@@ -25,10 +25,8 @@ const bootstrapApp = (config) => { updateConfig(config); setupDatabase(); };
 
 export { getDB, verifyDB };
 
-// In order for functions to be exposed to the Google Apps Script
-// Engine, we need to register them on the `global` context.
-// See https://github.com/fossamagna/gas-webpack-plugin
-// for more details.
+// In order for functions to be exposed to the Google Apps Script Engine, we need to register them
+// on the `global` context.  See https://github.com/fossamagna/gas-webpack-plugin for more details.
 
 global.onOpen = onOpen;
 global.setupDatabase = setupDatabase;
