@@ -21,7 +21,10 @@ function protectDB(database) {
 
 const setupDatabase = () => { if (!verifyDB()) { protectDB(insertDB()); } };
 
-const bootstrapApp = (config) => { updateConfig(config); setupDatabase(); };
+const bootstrapApp = (config) => {
+  updateConfig(config);
+  setupDatabase();
+};
 
 export { getDB, verifyDB };
 

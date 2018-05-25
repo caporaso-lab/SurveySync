@@ -1,4 +1,5 @@
 import { getDB } from './util';
+import { getConfig } from './config';
 
 function writeDataToDB(table) {
   const DB = getDB();
@@ -10,9 +11,9 @@ function writeDataToDB(table) {
 const parseData = response => response.split('\n').map(row => row.split(','));
 
 function fetchData() {
-  // TODO get config
+  const config = getConfig();
   return UrlFetchApp
-    .fetch('http://ghost.mggen.nau.edu:8081/basic/csv/lite')
+    .fetch(config.surveyUrl)
     .getContentText();
 }
 

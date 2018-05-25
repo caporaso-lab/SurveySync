@@ -10,3 +10,4 @@ import './util';
 import './ui';
 import './config';
 import './data';
+import './testing';
