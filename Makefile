@@ -1,32 +1,33 @@
-.PHONY: help
+.PHONY: help lint build login logout deploy dev clean
+
 help:
-	@echo "make build   -------->> to compile the code."
-	@echo "make lint    -------->> to check code quality."
 	@echo "make login   -------->> to log in to your google account."
 	@echo "make logout  -------->> to log out of your google account."
-	@echo "make deploy  -------->> to push the code to appscript."
 	@echo "make dev     -------->> to to install dependencies using yarn."
+	@echo "make build   -------->> to compile the code."
+	@echo "make lint    -------->> to check code quality."
+	@echo "make deploy  -------->> to push the code to appscript."
+	@echo "make clean   -------->> to clean up installed dependencies."
 
-.PHONY: lint
-lint:
-	npm run lint
+node_modules:
+	yarn install
 
-.PHONY: build
-build:
+build: node_modules
 	npm run build
 
-.PHONY: login
-login:
+lint: build
+	npm run lint
+
+login: node_modules
 	./node_modules/.bin/clasp login
 
-.PHONY: logout
-logout:
+logout: node_modules
 	./node_modules/.bin/clasp logout
 
-.PHONY: deploy
-deploy:
+deploy: build
 	cd dist && ./../node_modules/.bin/clasp push && cd ..
 
-.PHONY: dev
-dev:
-	yarn install
+dev: node_modules
+
+clean:
+	rm -rf node_modules
