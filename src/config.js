@@ -12,6 +12,8 @@ const validateConfigSchema = (config) => {
   return defaultConfigKeys.map(x => configKeys.includes(x)).every(x => x);
 };
 
+// validate config function
+
 function updateConfig(config) {
   const documentProperties = PropertiesService.getDocumentProperties();
   documentProperties.deleteAllProperties();

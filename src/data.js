@@ -1,8 +1,9 @@
-import { getDB } from './util';
-// import { getConfig } from './config';
+import { getDB, insertDB, protectDB } from './util';
 
-function writeDataToDB(table) {
-  const DB = getDB();
+function writeDataToDB(csvName, table) {
+  protectDB(insertDB(csvName));
+  Logger.log('writeDataToDB successful');
+  const DB = getDB(csvName);
   const [numofRows, numofCols] = [table.length, table[0].length];
   const range = DB.getRange(1, 1, numofRows, numofCols);
   range.setValues(table);

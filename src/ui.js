@@ -1,5 +1,5 @@
 import { getConfigWithDefaultFallBack, getConfig } from './config';
-import { verifyDB } from './util';
+import { getCsvNames } from './util';
 import { fetchData, parseData, writeDataToDB, unzipResponse, csvBlobToString } from './data';
 
 function showSurveyConfiguration() {
@@ -13,17 +13,16 @@ function showSurveyConfiguration() {
 }
 
 function triggerDataUpdate() {
-  if (!verifyDB()) {
-    throw new Error('Please run \'Initialize Survey\' prior to getting data.');
-  }
+  // TODO add config validation once we address issue-
   const config = getConfig();
   const resp = fetchData(config.surveyUrl);
   const blobs = unzipResponse(resp);
+  const csvNames = getCsvNames(blobs);
   const csvStrings = blobs.map(csvBlobToString);
   const tables = csvStrings.map(parseData);
-  // TODO Fix writeDataToDB
-  writeDataToDB(tables[1]);
-  Logger.log(tables);
+  for (let i = 0; i < tables.length; i += 1) {
+    writeDataToDB(csvNames[i], tables[i]);
+  }
 }
 
 function buildMenu() {
