@@ -13,6 +13,15 @@ const validateConfigSchema = (config) => {
 };
 
 // validate config function
+function validateConfig(config) {
+  const configValues = Object.values(config);
+  for (let i = 0; i < configValues.length; i += 1) {
+    if (configValues[i] === null || configValues[i] === '') {
+      return false;
+    }
+  }
+  return true;
+}
 
 function updateConfig(config) {
   const documentProperties = PropertiesService.getDocumentProperties();
@@ -29,13 +38,14 @@ function getConfigWithDefaultFallBack() {
   return test;
 }
 
-export { updateConfig, getConfigWithDefaultFallBack, getConfig };
+export { validateConfig, updateConfig, getConfigWithDefaultFallBack, getConfig };
 
 // In order for functions to be exposed to the Google Apps Script Engine, we need to register them
 // on the `global` context.  See https://github.com/fossamagna/gas-webpack-plugin for more details.
 
 global.updateConfig = updateConfig;
 global.getConfig = getConfig;
+global.validateConfig = validateConfig;
 global.resetConfigWithDefault = resetConfigWithDefault;
 global.validateConfigSchema = validateConfigSchema;
 global.getConfigWithDefaultFallBack = getConfigWithDefaultFallBack;
