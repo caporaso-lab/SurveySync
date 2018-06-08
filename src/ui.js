@@ -1,6 +1,6 @@
-import { getConfigWithDefaultFallBack } from './config';
-import { verifyDB } from './util';
-import { fetchData, parseData, writeDataToDB } from './data';
+import { validateConfig, getConfigWithDefaultFallBack, getConfig } from './config';
+import { getCsvNames } from './util';
+import { fetchData, parseData, writeDataToDB, unzipResponse, csvBlobToString } from './data';
 
 function showSurveyConfiguration() {
   const html = HtmlService.createTemplateFromFile('config-form');
@@ -13,17 +13,27 @@ function showSurveyConfiguration() {
 }
 
 function triggerDataUpdate() {
-  if (!verifyDB()) {
-    throw new Error('Please run \'Initialize Survey\' prior to getting data.');
+  const config = getConfig();
+  if (!validateConfig(config)) {
+    throw new Error('The Survey Configuration was left empty! Please reinitialize.');
   }
-  writeDataToDB(parseData(fetchData()));
+  const resp = fetchData(config.surveyUrl);
+  const blobs = unzipResponse(resp);
+  const csvNames = getCsvNames(blobs);
+  const csvStrings = blobs.map(csvBlobToString);
+  const tables = csvStrings.map(parseData);
+  for (let i = 0; i < tables.length; i += 1) {
+    writeDataToDB(csvNames[i], tables[i]);
+  }
 }
 
 function buildMenu() {
   SpreadsheetApp.getUi().createAddonMenu()
     .addItem('Get Data', 'triggerDataUpdate')
     .addItem('Initialize Survey', 'showSurveyConfiguration')
+    .addSeparator()
     .addItem('Test Clearing Existing Configuration', 'testingClearExistingConfig')
+    .addItem('Test Deleting All Database Sheets', 'testingDeleteDatabaseSheets')
     .addToUi();
 }
 
