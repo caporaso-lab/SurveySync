@@ -1,4 +1,4 @@
-import { upsertDB } from './util';
+import { upsertDB, blobIsCSVFile } from './util';
 
 const savedDBSheets = [];
 
@@ -21,7 +21,7 @@ const parseData = response => response.split('\n').map(row => row.split(','));
 
 const fetchData = url => UrlFetchApp.fetch(url);
 
-const unzipResponse = resp => Utilities.unzip(resp.getBlob());
+const unzipResponse = resp => Utilities.unzip(resp.getBlob()).filter(blobIsCSVFile);
 
 const csvBlobToString = blob => blob.getDataAsString();
 

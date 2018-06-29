@@ -16,5 +16,8 @@ function testingDeleteDatabaseSheets() {
 
 export { testingClearExistingConfig, testingDeleteDatabaseSheets };
 
+// In order for functions to be exposed to the Google Apps Script Engine, we need to register them
+// on the `global` context.  See https://github.com/fossamagna/gas-webpack-plugin for more details.
+
 global.testingClearExistingConfig = testingClearExistingConfig;
 global.testingDeleteDatabaseSheets = testingDeleteDatabaseSheets;

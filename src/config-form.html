@@ -1,26 +1,26 @@
 <html>
-<body>
-  <div>
-    <form id="config-form">
-      <label for="token-api">API token</label>
-      <input id="token-api" name="tokenAPI" type="text" value="<?= tokenAPI ?>" placeholder="API Token">
-      <br>
-      <label for="survey-id">Survey ID</label>
-      <input id="survey-id" name="surveyID" type="text" value="<?= surveyID ?>" placeholder="Survey ID">
-      <br>
-      <label for="survey-url">Survey URL</label>
-      <input id="survey-url" name="surveyUrl" type="text" value="<?= surveyUrl ?>" placeholder="Survey URL">
-      <br>
-      <input type="submit" value="Initialize Survey" onclick="submitForm(event)">
-    </form>
-  </div>
-  <script>
-    function submitForm(e) {
-      e.preventDefault();
-      var config = document.getElementById('config-form');
-      google.script.run.bootstrapApp(config);
-      google.script.host.close();
-    }
-  </script>
-</body>
+  <body>
+    <div>
+      <form id="config-form">
+        <label for="token-api">API token</label>
+        <input id="token-api" name="tokenAPI" type="text" value="<?= tokenAPI ?>" placeholder="API Token">
+        <br>
+        <label for="survey-id">Survey ID</label>
+        <input id="survey-id" name="surveyID" type="text" value="<?= surveyID ?>" placeholder="Survey ID">
+        <br>
+        <label for="survey-url">Survey URL</label>
+        <input id="survey-url" name="surveyUrl" type="text" value="<?= surveyUrl ?>" placeholder="Survey URL">
+        <br>
+        <input type="submit" value="Initialize Survey" onclick="submitForm(event)">
+      </form>
+    </div>
+    <script>
+      function submitForm(e) {
+        e.preventDefault();
+        var config = document.getElementById('config-form');
+        google.script.run.bootstrapApp(config);
+        google.script.host.close();
+      }
+    </script>
+  </body>
 </html>

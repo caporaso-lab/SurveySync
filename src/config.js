@@ -34,8 +34,7 @@ const resetConfigWithDefault = () => updateConfig(defaultConfig);
 
 function getConfigWithDefaultFallBack() {
   const config = getConfig();
-  const test = validateConfigSchema(config) ? config : resetConfigWithDefault();
-  return test;
+  return validateConfigSchema(config) ? config : resetConfigWithDefault();
 }
 
 export { validateConfig, updateConfig, getConfigWithDefaultFallBack, getConfig };

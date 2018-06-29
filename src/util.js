@@ -26,7 +26,9 @@ const bootstrapApp = (config) => {
   updateConfig(config);
 };
 
-export { getDB, getCsvNames, upsertDB, protectDB };
+const blobIsCSVFile = b => b.getName().endsWith('.csv');
+
+export { getDB, getCsvNames, upsertDB, protectDB, blobIsCSVFile };
 
 // In order for functions to be exposed to the Google Apps Script Engine, we need to register them
 // on the `global` context.  See https://github.com/fossamagna/gas-webpack-plugin for more details.
@@ -37,3 +39,4 @@ global.getDB = getDB;
 global.getCsvNames = getCsvNames;
 global.upsertDB = upsertDB;
 global.protectDB = protectDB;
+global.blobIsCSVFile = blobIsCSVFile;
