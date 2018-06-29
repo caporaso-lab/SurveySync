@@ -9,6 +9,7 @@ function writeDataToDB(csvName, table) {
   const DB = upsertDB(csvName);
   savedDBSheets.push(csvName);
   saveDBSheetsToProperties();
+  // TODO: this is crazy slow
   for (let row = 0; row < table.length; row += 1) {
     for (let col = 0; col < table[row].length; col += 1) {
       const range = DB.getRange(row + 1, col + 1);
@@ -19,7 +20,29 @@ function writeDataToDB(csvName, table) {
 
 const parseData = response => response.split('\n').map(row => row.split(','));
 
-const fetchData = url => UrlFetchApp.fetch(url);
+function fetchData(config) {
+  const tokenOptions = {
+    method: 'post',
+    payload: {
+      client_id: config.clientID,
+      client_secret: config.clientSecret,
+      grant_type: 'client_credentials',
+    },
+  };
+  // TODO: add URLbuilder util
+  const tokenURL = `${config.baseURL}/sharing/rest/oauth2/token`;
+  const tokenResponse = UrlFetchApp.fetch(tokenURL, tokenOptions);
+  const tokenContent = JSON.parse(tokenResponse.getContentText());
+
+  const layerOptions = {
+    method: 'post',
+    payload: {
+      token: tokenContent.access_token,
+    },
+  };
+  const layerURL = `${config.baseURL}/sharing/rest/content/items/${config.layerID}/data`;
+  return UrlFetchApp.fetch(layerURL, layerOptions);
+}
 
 const unzipResponse = resp => Utilities.unzip(resp.getBlob()).filter(blobIsCSVFile);
 

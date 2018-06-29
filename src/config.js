@@ -1,7 +1,8 @@
 const defaultConfig = {
-  tokenAPI: '',
-  surveyID: '',
-  surveyUrl: 'http://ghost.mggen.nau.edu:8081/zip/simple.zip',
+  clientID: '',
+  clientSecret: '',
+  layerID: '',
+  baseURL: 'https://grail.maps.arcgis.com',
 };
 
 const getConfig = () => PropertiesService.getDocumentProperties().getProperties();

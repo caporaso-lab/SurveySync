@@ -17,7 +17,7 @@ function triggerDataUpdate() {
   if (!validateConfig(config)) {
     throw new Error('The Survey Configuration was left empty! Please reinitialize.');
   }
-  const resp = fetchData(config.surveyUrl);
+  const resp = fetchData(config);
   const blobs = unzipResponse(resp);
   const csvNames = getCsvNames(blobs);
   const csvStrings = blobs.map(csvBlobToString);
@@ -30,7 +30,7 @@ function triggerDataUpdate() {
 function buildMenu() {
   SpreadsheetApp.getUi().createAddonMenu()
     .addItem('Get Data', 'triggerDataUpdate')
-    .addItem('Initialize Survey', 'showSurveyConfiguration')
+    .addItem('Survey Configuration', 'showSurveyConfiguration')
     .addSeparator()
     .addItem('Test Clearing Existing Configuration', 'testingClearExistingConfig')
     .addItem('Test Deleting All Database Sheets', 'testingDeleteDatabaseSheets')
